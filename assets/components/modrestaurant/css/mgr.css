@@ -1,0 +1,24 @@
+#modrestaurant-update-panel-main, #modrestaurant-grid-records-attach {
+    padding-top: 0;
+}
+
+#modrestaurant-update-panel-sub div.main-wrapper {
+    padding: 0;
+}
+
+#modrestaurant-resource-main-left {
+    margin-left: 0;
+}
+
+.x-modaction-col-cell .x-grid3-cell-inner i.x-action-col-icon {
+    display: block;
+    float: left;
+    margin: 0 4px;
+    padding: 5px;
+    font-size: 1.25em;
+    color: #3b6c88;
+}
+
+.x-modaction-col-cell .x-grid3-cell-inner i.x-action-col-icon:hover {
+    color: #3697cd;
+}

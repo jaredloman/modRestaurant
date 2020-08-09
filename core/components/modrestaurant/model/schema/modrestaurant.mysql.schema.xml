@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model package="modrestaurant"
+       baseClass="xPDOObject"
+       platform="mysql"
+       defaultEngine="MyISAM"
+       version="1.1">
+    <object class="mrMenu" table="mr_menus" extends="xPDOSimpleObject">
+        <field key="name" dbtype="varchar" precision="255" phptype="string" null="false" default=""/>
+        <field key="description" dbtype="text" phptype="string" null="true" default=""/>
+        <field key="footer" dbtype="text" phptype="string" null="true" default=""/>
+        <field key="active" dbtype="int" precision="1" attributes="unsigned" phptype="integer" null="false"
+               default="0"/>
+        <field key="context" dbtype="varchar" precision="75" phptype="string" null="false" default=""/>
+        <field key="sort" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="true" default="0"/>
+        <field key="createdon" dbtype="datetime" phptype="datetime" null="true"/>
+        <field key="createdby" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false"
+               default="0"/>
+        <field key="editedon" dbtype="datetime" phptype="datetime" null="true"/>
+        <field key="editedby" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false"
+               default="0"/>
+        <aggregate alias="CreatedBy" class="modUser" local="createdby" foreign="id" cardinality="one" owner="foreign"/>
+        <aggregate alias="EditedBy" class="modUser" local="editedby" foreign="id" cardinality="one" owner="foreign"/>
+        <aggregate alias="Context" class="modContext" local="context" foreign="key" cardinality="one" owner="foreign"/>
+        <composite alias="MenuCategories" class="mrMenuCategory" local="id" foreign="menu" cardinality="many"
+                   owner="local"/>
+        <index alias="name" name="name" primary="false" unique="false" type="BTREE">
+            <column key="name" length="" collation="A" null="false"/>
+        </index>
+        <index alias="sort" name="sort" primary="false" unique="false" type="BTREE">
+            <column key="sort" length="" collation="A" null="false"/>
+        </index>
+        <index alias="active" name="active" primary="false" unique="false" type="BTREE">
+            <column key="active" length="" collation="A" null="false"/>
+        </index>
+    </object>
+    <object class="mrCategory" table="mr_categories" extends="xPDOSimpleObject">
+        <field key="name" dbtype="varchar" precision="255" phptype="string" null="false" default=""/>
+        <field key="description" dbtype="text" phptype="string" null="true" default=""/>
+        <field key="footer" dbtype="text" phptype="string" null="true" default=""/>
+        <field key="active" dbtype="int" precision="1" attributes="unsigned" phptype="integer" null="false"
+               default="0"/>
+        <field key="context" dbtype="varchar" precision="75" phptype="string" null="false" default="web"/>
+        <field key="sort" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="true" default="0"/>
+        <field key="createdon" dbtype="datetime" phptype="datetime" null="true"/>
+        <field key="createdby" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false"
+               default="0"/>
+        <field key="editedon" dbtype="datetime" phptype="datetime" null="true"/>
+        <field key="editedby" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false"
+               default="0"/>
+        <aggregate alias="CreatedBy" class="modUser" local="createdby" foreign="id" cardinality="one" owner="foreign"/>
+        <aggregate alias="EditedBy" class="modUser" local="editedby" foreign="id" cardinality="one" owner="foreign"/>
+        <composite alias="CategoryItems" class="mrCategoryItem" local="id" foreign="category" cardinality="many"
+                   owner="local"/>
+        <index alias="name" name="name" primary="false" unique="false" type="BTREE">
+            <column key="name" length="" collation="A" null="false"/>
+        </index>
+        <index alias="sort" name="sort" primary="false" unique="false" type="BTREE">
+            <column key="sort" length="" collation="A" null="false"/>
+        </index>
+        <index alias="active" name="active" primary="false" unique="false" type="BTREE">
+            <column key="active" length="" collation="A" null="false"/>
+        </index>
+    </object>
+    <object class="mrItem" table="mr_items" extends="xPDOSimpleObject">
+        <field key="name" dbtype="varchar" precision="255" phptype="string" null="false" default=""/>
+        <field key="description" dbtype="text" phptype="string" null="true" default=""/>
+        <field key="price" dbtype="decimal" precision="5,2" phptype="float" null="true" default="0.00"/>
+        <field key="photo" dbtype="varchar" precision="191" phptype="string" null="false" default=""/>
+        <field key="active" dbtype="int" precision="1" attributes="unsigned" phptype="integer" null="false"
+               default="0"/>
+        <field key="featured" dbtype="int" precision="1" attributes="unsigned" phptype="integer" null="false"
+               default="0"/>
+        <field key="context" dbtype="varchar" precision="75" phptype="string" null="false" default="web"/>
+        <field key="sort" dbtype="int" precision="10" attributes="unsigned" phptype="integer" default="0"/>
+        <field key="createdon" dbtype="datetime" phptype="datetime" null="true"/>
+        <field key="createdby" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false"
+               default="0"/>
+        <field key="editedon" dbtype="datetime" phptype="datetime" null="true"/>
+        <field key="editedby" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false"
+               default="0"/>
+        <aggregate alias="CreatedBy" class="modUser" local="createdby" foreign="id" cardinality="one" owner="foreign"/>
+        <aggregate alias="EditedBy" class="modUser" local="editedby" foreign="id" cardinality="one" owner="foreign"/>
+        <composite alias="ItemExtras" class="mrItemExtra" local="id" foreign="item" cardinality="many" owner="local"/>
+        <index alias="name" name="name" primary="false" unique="false" type="BTREE">
+            <column key="name" length="" collation="A" null="false"/>
+        </index>
+        <index alias="sort" name="sort" primary="false" unique="false" type="BTREE">
+            <column key="sort" length="" collation="A" null="false"/>
+        </index>
+        <index alias="active" name="active" primary="false" unique="false" type="BTREE">
+            <column key="active" length="" collation="A" null="false"/>
+        </index>
+    </object>
+    <object class="mrExtra" table="mr_extras" extends="xPDOSimpleObject">
+        <field key="name" dbtype="varchar" precision="255" phptype="string" null="false" default=""/>
+        <field key="description" dbtype="text" phptype="string" null="true" default=""/>
+        <field key="price" dbtype="decimal" precision="5,2" phptype="float" null="true" default="0.00"/>
+        <field key="active" dbtype="int" precision="1" attributes="unsigned" phptype="integer" null="false"
+               default="0"/>
+        <field key="context" dbtype="varchar" precision="75" phptype="string" null="false" default="web"/>
+        <field key="sort" dbtype="int" precision="10" attributes="unsigned" phptype="integer" default="0"/>
+        <field key="createdon" dbtype="datetime" phptype="datetime" null="true"/>
+        <field key="createdby" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false"
+               default="0"/>
+        <field key="editedon" dbtype="datetime" phptype="datetime" null="true"/>
+        <field key="editedby" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false"
+               default="0"/>
+        <aggregate alias="CreatedBy" class="modUser" local="createdby" foreign="id" cardinality="one" owner="foreign"/>
+        <aggregate alias="EditedBy" class="modUser" local="editedby" foreign="id" cardinality="one" owner="foreign"/>
+        <index alias="name" name="name" primary="false" unique="false" type="BTREE">
+            <column key="name" length="" collation="A" null="false"/>
+        </index>
+        <index alias="sort" name="sort" primary="false" unique="false" type="BTREE">
+            <column key="sort" length="" collation="A" null="false"/>
+        </index>
+        <index alias="active" name="active" primary="false" unique="false" type="BTREE">
+            <column key="active" length="" collation="A" null="false"/>
+        </index>
+    </object>
+    <object class="mrMenuCategory" table="mr_menu_categories" extends="xPDOSimpleObject">
+        <field key="menu" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="0"/>
+        <field key="category" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false"
+               default="0"/>
+        <field key="sort" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="true" default="0"/>
+        <aggregate alias="Menu" class="mrMenu" local="menu" foreign="id" cardinality="one" owner="foreign"/>
+        <aggregate alias="Category" class="mrCategory" local="category" foreign="id" cardinality="one" owner="foreign"/>
+    </object>
+    <object class="mrCategoryItem" table="mr_category_items" extends="xPDOSimpleObject">
+        <field key="category" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false"
+               default="0"/>
+        <field key="item" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="0"/>
+        <field key="price" dbtype="decimal" precision="5,2" phptype="float" null="true" default="0.00"/>
+        <field key="sort" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="true" default="0"/>
+        <aggregate alias="Category" class="mrCategory" local="category" foreign="id" cardinality="one" owner="foreign"/>
+        <aggregate alias="Item" class="mrItem" local="item" foreign="id" cardinality="one" owner="foreign"/>
+    </object>
+    <object class="mrItemExtra" table="mr_item_extras" extends="xPDOSimpleObject">
+        <field key="item" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="0"/>
+        <field key="extra" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false"
+               default="0"/>
+        <field key="price" dbtype="decimal" precision="5,2" phptype="float" null="true" default="0.00"/>
+        <field key="sort" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="true" default="0"/>
+        <aggregate alias="Item" class="mrItem" local="item" foreign="id" cardinality="one" owner="foreign"/>
+        <aggregate alias="Extra" class="mrExtra" local="extra" foreign="id" cardinality="one" owner="foreign"/>
+    </object>
+</model>
