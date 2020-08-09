@@ -2,3 +2,5 @@ config.core.php
 _build
 .idea
 .eslintrc.js
+.gitignore
+.gitattributes
