@@ -12,14 +12,7 @@ class modRestaurant
         $assetsUrl = $this->modx->getOption('modrestaurant.assets_url', $config, $this->modx->getOption('assets_url') . 'components/modrestaurant/');
         $assetsPath = $this->modx->getOption('modrestaurant.assets_path', $config, $this->modx->getOption('assets_path') . 'components/modrestaurant/');
         $redactorConfig = $this->modx->getOption('modrestaurant.redactor_config', $config, false);
-        $mediasourceId = $this->modx->getOption('modrestaurant.mediasource_id', $config, '1');
-//        $ctxs = $this->modx->getCollection('modContext', ['key:NOT IN' => ['mgr']]);
-//        $contexts = [];
-//        if ($ctxs) {
-//            foreach ($ctxs as $c) {
-//                $contexts[] = $c->toArray();
-//            }
-//        }
+        $mediasourceId = $this->modx->getOption('modrestaurant.mediasource_id', $config, 1);
         $this->modx->loadClass('sources.modFileMediaSource');
         $this->modx->loadClass('sources.modMediaSource');
         $msource = $this->modx->getObject('modFileMediaSource', $mediasourceId);

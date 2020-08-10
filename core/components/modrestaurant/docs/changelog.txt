@@ -1,0 +1,5 @@
+Changelog file for modRestaurant component.
+
+modRestaurant 1.0 beta1
+====================================
+- Initial commit

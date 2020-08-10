@@ -4,7 +4,6 @@ if (!($modrestaurant instanceof modRestaurant)) {
     return '';
 }
 /* Default Properties */
-$menuId = $modx->getOption('menuId', $scriptProperties, 0);
 $contextAware = $modx->getOption('modrestaurant.context_aware', $scriptProperties, false);
 $ctx = $modx->getOption('context', $scriptProperties, 'web');
 $sort = $modx->getOption('sort', $scriptProperties, 'sort');
