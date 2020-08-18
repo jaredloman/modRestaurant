@@ -362,7 +362,7 @@ Ext.extend(modRestaurant.grid.GridPanel, MODx.grid.Grid, {
         }
 
         if (val != '') {
-            return '<img src="' + MODx.config.connectors_url + 'system/phpthumb.php?h=60&src=' + source + val + '&HTTP_MODAUTH=' + MODx.siteId + '&wctx=mgr&source=' + modRestaurant.config.mediasourceId + '" alt="" />';
+            return '<img src="' + MODx.config.connectors_url + 'system/phpthumb.php?h=60&src=' + val + '&HTTP_MODAUTH=' + MODx.siteId + '&wctx=mgr&source=' + modRestaurant.config.mediasourceId + '" alt="" />';
         } else {
             return defaultImage;
         }

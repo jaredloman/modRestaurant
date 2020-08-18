@@ -76,7 +76,7 @@ class modRestaurantCreateManagerController extends modExtraManagerController
         $this->addJavascript($this->modrestaurant->config['jsUrl'] . 'mgr/widgets/combos.js');
         $this->addJavascript($this->modrestaurant->config['jsUrl'] . 'mgr/widgets/inputs.js');
         $this->addJavascript($this->modrestaurant->config['jsUrl'] . 'mgr/widgets/windows.js?a=22');
-        $this->addJavascript($this->modrestaurant->config['jsUrl'] . 'mgr/widgets/grids.js?a=60');
+        $this->addJavascript($this->modrestaurant->config['jsUrl'] . 'mgr/widgets/grids.js?a=61');
         $this->addJavascript($this->modrestaurant->config['jsUrl'] . 'mgr/widgets/overrides.js');
         $this->addLastJavascript($this->modrestaurant->config['jsUrl'] . 'mgr/sections/create.js?a=35');
         $contextAware = $this->modx->getOption('modrestaurant.context_aware') ? 'true' : 'false';
